@@ -1,0 +1,17 @@
+name: Checkin
+on:
+  workflow_dispatch:
+
+jobs:
+  checkin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - run: pip install requests
+      - run: python checkin.py
+        env:
+          STUDENT_ID: ${{ secrets.STUDENT_ID }}
+          PASSWORD: ${{ secrets.PASSWORD }}
